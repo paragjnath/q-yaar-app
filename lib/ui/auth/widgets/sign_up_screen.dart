@@ -31,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const Spacer(),
+              const SizedBox(height: 60),
               CustomControlledTextField(
                 text: signUpForm.nameFormField.value,
                 onChanged: (value) {
@@ -91,7 +91,6 @@ class SignUpScreen extends StatelessWidget {
                 text: 'Sign Up',
                 isEnabled: submitStatus != LoadingStatus.loading,
               ),
-              const Spacer(),
             ],
           ),
         ),

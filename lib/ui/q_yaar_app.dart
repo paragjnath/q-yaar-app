@@ -17,7 +17,7 @@ class QYaarApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 255, 237, 98),
+            seedColor: const Color.fromARGB(255, 240, 145, 44),
             dynamicSchemeVariant: DynamicSchemeVariant.expressive,
           ),
           useMaterial3: true,

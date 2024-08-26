@@ -15,6 +15,11 @@ import 'package:q_yaar/utilities/custom_toast.dart';
 
 class SignUpAction extends ReduxAction<AppState> {
   LoadingStatus loadingStatus = LoadingStatus.loading;
+  Completer completer = Completer();
+
+  SignUpAction({
+    required this.completer,
+  });
 
   @override
   Future<Null> reduce() async {
@@ -42,14 +47,17 @@ class SignUpAction extends ReduxAction<AppState> {
             authData: authData,
           ),
         );
+        completer.complete(true);
       } else {
         CustomToast.showDioErrMessage(response);
         loadingStatus = LoadingStatus.error;
+        completer.complete(false);
       }
     } catch (e, st) {
       CrashlyticsService.recordError(e, st);
       loadingStatus = LoadingStatus.error;
       debugPrintStack(stackTrace: st);
+      completer.complete(false);
     }
   }
 

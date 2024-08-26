@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:q_yaar/constants/loading_status.dart';
@@ -21,7 +23,16 @@ class SignUpScreenConnector extends StatelessWidget {
             submitStatus: snapshot.submitStatus,
             signUpForm: snapshot.signUpForm,
             updateSignUpFormFieldValue: snapshot.updateSignUpFormFieldValue,
-            submitSignUpForm: snapshot.submitSignUpForm,
+            submitSignUpForm: () {
+              final completer = Completer();
+              completer.future.then((value) {
+                if (value) {
+                  // ignore: use_build_context_synchronously
+                  Navigator.of(context).pop();
+                }
+              });
+              snapshot.submitSignUpForm(completer);
+            },
           );
         },
       ),
@@ -37,7 +48,7 @@ class _ViewModel extends Vm {
     required String fieldValue,
   }) updateSignUpFormFieldValue;
 
-  final VoidCallback submitSignUpForm;
+  final Function(Completer completer) submitSignUpForm;
 
   _ViewModel({
     required this.submitStatus,
@@ -69,9 +80,11 @@ class _ViewModelFactory
             fieldValue: fieldValue,
           ));
         },
-        submitSignUpForm: () {
+        submitSignUpForm: (Completer completer) {
           dispatch(ValidateSignUpFormAction());
-          dispatch(SignUpAction());
+          dispatch(SignUpAction(
+            completer: completer,
+          ));
         },
       );
 }

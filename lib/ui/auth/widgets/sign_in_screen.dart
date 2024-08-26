@@ -33,7 +33,7 @@ class SignInScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const Spacer(),
+              const SizedBox(height: 120),
               CustomControlledTextField(
                 text: signInForm.emailFormField.value,
                 onChanged: (value) {
@@ -71,7 +71,6 @@ class SignInScreen extends StatelessWidget {
                 onPressed: goToSignUpScreen,
                 text: 'Sign Up',
               ),
-              const Spacer(),
             ],
           ),
         ),
