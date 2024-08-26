@@ -88,7 +88,7 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(height: 24),
               CustomFilledButton(
                 onPressed: submitSignUpForm,
-                text: 'Sign In',
+                text: 'Sign Up',
                 isEnabled: submitStatus != LoadingStatus.loading,
               ),
               const Spacer(),

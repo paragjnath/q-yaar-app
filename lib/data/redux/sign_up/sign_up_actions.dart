@@ -34,7 +34,7 @@ class SignUpAction extends ReduxAction<AppState> {
         QYaarPlatformUrls.userSignUp,
         data: loginRequest.toMap(),
       );
-      if (response.statusCode == 200 && response.data != null) {
+      if (response.statusCode == 201 && response.data != null) {
         loadingStatus = LoadingStatus.success;
         AuthData authData = AuthData.fromMap(response.data);
         dispatch(
