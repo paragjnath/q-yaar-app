@@ -4,36 +4,35 @@ class CustomOutlinedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   const CustomOutlinedButton({
-    Key? key,
+    super.key,
     required this.onPressed,
-    this.text = "VIEW TRANSACTION HISTORY",
-  }) : super(key: key);
+    this.text = "",
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: 48,
+      height: 54,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
           elevation: 0.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          side: const BorderSide(
+          side: BorderSide(
             width: 1,
-            color: Color(0xFF0068FF),
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
           ),
         ),
         onPressed: onPressed,
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Color(0xFF0068FF),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
             fontSize: 12,
-            fontFamily: 'Inter',
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -47,22 +46,22 @@ class CustomFilledButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String text;
   const CustomFilledButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.text,
     this.isEnabled = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: 48,
+      height: 54,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: onPressed == null || !isEnabled
-              ? const Color(0xFF80B3FF)
-              : const Color(0xFF0068FF),
+              ? Theme.of(context).colorScheme.surfaceContainerHighest
+              : Theme.of(context).colorScheme.primaryContainer,
           elevation: 0.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -72,10 +71,9 @@ class CustomFilledButton extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
             fontSize: 14,
-            fontFamily: 'Inter',
             fontWeight: FontWeight.w600,
           ),
         ),

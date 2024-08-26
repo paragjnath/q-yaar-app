@@ -8,7 +8,7 @@ class AuthInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) {
-    final token = store.state.authState.authData?.profiles.player.profileName;
+    final token = store.state.authState.authData?.profiles?.player?.accessToken;
     if (token != null) {
       final jwt = "JWT $token";
       options.headers['Authorization'] = jwt;

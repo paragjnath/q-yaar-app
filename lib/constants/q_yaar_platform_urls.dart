@@ -4,5 +4,6 @@ class QYaarPlatformUrls {
   static String getBaseUrl() {
     return EnvironmentConfig.getQYaarPlatformBaseUrl();
   }
-  static const String userAuth = "api/v1/auth/user/";
+
+  static const String userLogin = "api/v1/auth/login";
 }

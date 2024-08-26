@@ -23,34 +23,49 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            CustomControlledTextField(
-              text: signInForm.emailFormField.value,
-              onChanged: (value) {
-                updateSignInFormFieldValue(
-                  fieldId: signInForm.emailFormField.id,
-                  fieldValue: value,
-                );
-              },
-              label: signInForm.emailFormField.label,
-            ),
-            CustomControlledTextField(
-              text: signInForm.passwordFormField.value,
-              onChanged: (value) {
-                updateSignInFormFieldValue(
-                  fieldId: signInForm.passwordFormField.id,
-                  fieldValue: value,
-                );
-              },
-              label: signInForm.passwordFormField.label,
-            ),
-            CustomFilledButton(
-              onPressed: submitSignInForm,
-              text: 'Sign In',
-            ),
-          ],
+      appBar: AppBar(
+        title: const Text('Q Yaar'),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const Spacer(),
+              CustomControlledTextField(
+                text: signInForm.emailFormField.value,
+                onChanged: (value) {
+                  updateSignInFormFieldValue(
+                    fieldId: signInForm.emailFormField.id,
+                    fieldValue: value,
+                  );
+                },
+                label: signInForm.emailFormField.label,
+                errorText: signInForm.emailFormField.error,
+                keyboardType: TextInputType.emailAddress,
+              ),
+              const SizedBox(height: 16),
+              CustomControlledTextField(
+                text: signInForm.passwordFormField.value,
+                onChanged: (value) {
+                  updateSignInFormFieldValue(
+                    fieldId: signInForm.passwordFormField.id,
+                    fieldValue: value,
+                  );
+                },
+                label: signInForm.passwordFormField.label,
+                errorText: signInForm.passwordFormField.error,
+                keyboardType: TextInputType.visiblePassword,
+              ),
+              const SizedBox(height: 24),
+              CustomFilledButton(
+                onPressed: submitSignInForm,
+                text: 'Sign In',
+                isEnabled: submitStatus != LoadingStatus.loading,
+              ),
+              const Spacer(),
+            ],
+          ),
         ),
       ),
     );

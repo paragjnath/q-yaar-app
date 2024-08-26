@@ -7,6 +7,7 @@ import 'package:q_yaar/constants/q_yaar_platform_urls.dart';
 import 'package:q_yaar/data/redux/app_state.dart';
 import 'package:q_yaar/data/redux/auth/auth_actions.dart';
 import 'package:q_yaar/data/remote/model/auth_data.dart';
+import 'package:q_yaar/data/remote/model/login_request.dart';
 import 'package:q_yaar/data/remote/q_yaar_platform_api_service.dart';
 import 'package:q_yaar/services/crashlytics_service.dart';
 import 'package:q_yaar/utilities/custom_toast.dart';
@@ -17,8 +18,17 @@ class SignInAction extends ReduxAction<AppState> {
   @override
   Future<Null> reduce() async {
     try {
-      final response = await QYaarPlatformApiService.instance
-          .post(QYaarPlatformUrls.userAuth);
+      if (!state.signInState.signInForm.isFormValid) {
+        throw Exception('Form is not valid');
+      }
+      final loginRequest = LoginRequest(
+        email: state.signInState.signInForm.emailFormField.value,
+        password: state.signInState.signInForm.passwordFormField.value,
+      );
+      final response = await QYaarPlatformApiService.instance.post(
+        QYaarPlatformUrls.userLogin,
+        data: loginRequest.toMap(),
+      );
       if (response.statusCode == 200 && response.data != null) {
         loadingStatus = LoadingStatus.success;
         AuthData authData = AuthData.fromMap(response.data);
