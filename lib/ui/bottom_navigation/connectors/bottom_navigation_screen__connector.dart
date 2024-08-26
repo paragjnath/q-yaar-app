@@ -12,9 +12,6 @@ class BottomNavigationScreenConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, _ViewModel>(
       vm: () => _ViewModelFactory(this),
-      onInit: (store) {
-        store.dispatch(LoginFromLocalAction());
-      },
       builder: (context, snapshot) {
         return BottomNavigationScreen(
           logOut: snapshot.logOut,

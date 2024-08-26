@@ -29,7 +29,7 @@ class SignInScreen extends StatelessWidget {
         title: const Text('Q Yaar'),
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
@@ -48,6 +48,7 @@ class SignInScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               CustomControlledTextField(
+                obscureText: true,
                 text: signInForm.passwordFormField.value,
                 onChanged: (value) {
                   updateSignInFormFieldValue(

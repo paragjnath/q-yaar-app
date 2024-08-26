@@ -14,7 +14,7 @@ class AuthState {
 
   factory AuthState.initial() {
     return const AuthState(
-      authStatus: AuthStatus.loading,
+      authStatus: AuthStatus.loggedOut,
       authData: null,
     );
   }

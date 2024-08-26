@@ -27,7 +27,7 @@ class SignUpScreen extends StatelessWidget {
         title: const Text('Join Q Yaar'),
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [

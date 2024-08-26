@@ -25,6 +25,7 @@ class BottomNavigationScreen extends StatelessWidget {
         color: Theme.of(context).colorScheme.primaryContainer,
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'Welcome ${profileName}',
