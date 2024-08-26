@@ -1,8 +1,8 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:q_yaar/constants/loading_status.dart';
+import 'package:q_yaar/constants/route_names.dart';
 import 'package:q_yaar/data/redux/app_state.dart';
-import 'package:q_yaar/data/redux/auth/auth_actions.dart';
 import 'package:q_yaar/data/redux/sign_in/sign_in_actions.dart';
 import 'package:q_yaar/data/redux/sign_in/sign_in_form_actions.dart';
 import 'package:q_yaar/ui/auth/models/sigin_in_form.dart';
@@ -17,15 +17,15 @@ class SignInScreenConnector extends StatelessWidget {
     return Scaffold(
       body: StoreConnector<AppState, _ViewModel>(
         vm: () => _ViewModelFactory(this),
-        onInit: (store) {
-          store.dispatch(LoginFromLocalAction());
-        },
         builder: (context, snapshot) {
           return SignInScreen(
             submitStatus: snapshot.submitStatus,
             signInForm: snapshot.signInForm,
             updateSignInFormFieldValue: snapshot.updateSignInFormFieldValue,
             submitSignInForm: snapshot.submitSignInForm,
+            goToSignUpScreen: () {
+              Navigator.of(context).pushNamed(RouteNames.signUpScreen);
+            },
           );
         },
       ),
@@ -48,10 +48,12 @@ class _ViewModel extends Vm {
     required this.signInForm,
     required this.updateSignInFormFieldValue,
     required this.submitSignInForm,
-  }) : super(equals: [
-          submitStatus,
-          signInForm,
-        ]);
+  }) : super(
+          equals: [
+            submitStatus,
+            signInForm,
+          ],
+        );
 }
 
 class _ViewModelFactory
@@ -74,6 +76,7 @@ class _ViewModelFactory
           ));
         },
         submitSignInForm: () {
+          dispatch(ValidateSignInFormAction());
           dispatch(SignInAction());
         },
       );

@@ -15,6 +15,7 @@ class CustomControlledTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final int? maxLength;
   final List<TextInputFormatter>? inputFormatters;
+  final bool obscureText;
 
   const CustomControlledTextField({
     super.key,
@@ -29,6 +30,7 @@ class CustomControlledTextField extends StatelessWidget {
     this.keyboardType,
     this.maxLength,
     this.inputFormatters,
+    this.obscureText = false,
   });
 
   @override
@@ -62,6 +64,7 @@ class CustomControlledTextField extends StatelessWidget {
           height: 8,
         ),
         ControlledTextField(
+          obscureText: obscureText,
           onTap: onTap,
           readOnly: readOnly,
           decoration: InputDecoration(

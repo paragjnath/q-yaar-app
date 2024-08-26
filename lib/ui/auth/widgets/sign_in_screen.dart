@@ -13,12 +13,14 @@ class SignInScreen extends StatelessWidget {
   }) updateSignInFormFieldValue;
 
   final VoidCallback submitSignInForm;
+  final VoidCallback goToSignUpScreen;
   const SignInScreen({
     super.key,
     required this.submitStatus,
     required this.signInForm,
     required this.updateSignInFormFieldValue,
     required this.submitSignInForm,
+    required this.goToSignUpScreen,
   });
   @override
   Widget build(BuildContext context) {
@@ -62,6 +64,11 @@ class SignInScreen extends StatelessWidget {
                 onPressed: submitSignInForm,
                 text: 'Sign In',
                 isEnabled: submitStatus != LoadingStatus.loading,
+              ),
+              const SizedBox(height: 24),
+              CustomOutlinedButton(
+                onPressed: goToSignUpScreen,
+                text: 'Sign Up',
               ),
               const Spacer(),
             ],

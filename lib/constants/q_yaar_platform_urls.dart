@@ -6,4 +6,5 @@ class QYaarPlatformUrls {
   }
 
   static const String userLogin = "api/v1/auth/login";
+  static const String userSignUp = "api/v1/auth/signup";
 }

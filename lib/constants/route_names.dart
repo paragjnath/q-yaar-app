@@ -1,7 +1,4 @@
-enum RouteNames {
-  homePage('/'),
-  loginScreen('/login_screen'),
-  ;
-  final String routeName;
-  const RouteNames(this.routeName);
+class RouteNames {
+  static const homePage = '/';
+  static const signUpScreen = '/sign_up_screen';
 }

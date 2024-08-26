@@ -12,6 +12,7 @@ class ControlledTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final int? maxLength;
   final List<TextInputFormatter>? inputFormatters;
+  final bool obscureText;
 
   const ControlledTextField({
     super.key,
@@ -25,6 +26,7 @@ class ControlledTextField extends StatefulWidget {
     this.inputFormatters,
     this.style,
     this.textAlign,
+    this.obscureText = false,
   });
 
   @override
@@ -62,6 +64,7 @@ class ControlledTextFieldState extends State<ControlledTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      obscureText:widget.obscureText,
       textAlign: widget.textAlign ?? TextAlign.start,
       style: widget.style,
       controller: _textEditingController,

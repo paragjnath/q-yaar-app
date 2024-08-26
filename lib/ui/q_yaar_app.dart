@@ -2,9 +2,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:q_yaar/data/redux/app_state.dart';
 import 'package:q_yaar/data/redux/store.dart';
+import 'package:q_yaar/routes/routes.dart';
 import 'package:q_yaar/ui/auth/connectors/check_auth_connector.dart';
 import 'package:q_yaar/ui/auth/connectors/sigin_in_screen_connector.dart';
-import 'package:q_yaar/ui/bottom_navigation/widgets/bottom_navigation_screen.dart';
+import 'package:q_yaar/ui/bottom_navigation/connectors/bottom_navigation_screen__connector.dart';
 
 class QYaarApp extends StatelessWidget {
   const QYaarApp({super.key});
@@ -23,8 +24,9 @@ class QYaarApp extends StatelessWidget {
         ),
         home: const CheckAuthConnector(
           signInScreen: SignInScreenConnector(),
-          child: BottomNavigationScreen(),
+          child: BottomNavigationScreenConnector(),
         ),
+        routes: AppRoutes.routes,
       ),
     );
   }
